@@ -1,25 +1,55 @@
-import { useFetchContactsQuery } from 'redux/contactsApi';
-import { Form } from 'components/Form/Form';
-import { ListContacts } from 'components/ListContacts/ListContacts';
-import { Filter } from 'components/Filter/Filter';
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from 'components/Layout/Layout';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import AuthOperations from 'redux/auth/authOperations';
 import { Container } from 'components/App.styled';
-import { Message } from 'components/Message/Message';
-import { Loader } from 'components/Loader/Loader';
+import PrivateRoute from 'components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
+// import { authSelectors } from 'redux/auth/authSelectors';
+// import { Loader } from "./Loader/Loader";
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
+const ContactsPage = lazy(() => import("../pages/ContactsPage"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 
 export function App() {
-  const { data: contacts, isFetching } = useFetchContactsQuery();
+  const dispatch = useDispatch();
+  // const isRefreshingUser = useSelector(authSelectors.getIsRefreshing);
+
+  useEffect(() => {
+    dispatch(AuthOperations.fetchCurrentUser())
+  })
 
   return (
-    <Container>
-      <h1>Phonebook</h1>
-      <Form />
+      <Container>
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
 
-      <h2>Contacts</h2>
-      <Filter />
-      {isFetching && <Loader/>}
-      {contacts ? <ListContacts /> : <Message message='Contact list is empty'/> }
-      
+            <Route path="register" element={
+              <PublicRoute redirectTo="/contacts" restricted>
+                <RegisterPage />
+              </PublicRoute>} />
+            
+            <Route path="login" element={
+              <PublicRoute redirectTo="/contacts" restricted>
+                <LoginPage />
+              </PublicRoute>} />
+                       
+            <Route path="contacts" element={
+              <PrivateRoute redirectTo="/login">
+                <ContactsPage />
+              </PrivateRoute>} />
+
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </Container>
-    
-  );
+    )
 };

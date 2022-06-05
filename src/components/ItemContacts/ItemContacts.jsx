@@ -5,20 +5,19 @@ import { IconButton } from 'components/IconButton/IconButton';
 import { ReactComponent as DeleteIcon } from 'components/icons/deleteIcon.svg';
 
 
-export const ItemContacts = ({ name, phone, deleteContact, id }) => {
+export const ItemContacts = ({ name, number, deleteContact, id }) => {
     return (
         <>
             <ItemStyled>
                 <BlockName>{name}</BlockName>
-                <span>{phone}</span>
+                <span>{number}</span>
 
                 <IconButton
                     deleteContact={deleteContact}
                     id={id}
                     aria-label='Delete contact'
-
                 >
-                <DeleteIcon width='12' height='12' fill='#9bd6fa'/>
+                     <DeleteIcon width='12' height='12' fill='#9bd6fa'/>
                 </IconButton>
 
                 {/* <ButtonDelete type="button" onClick={() => deleteContact(id)}>Delete</ButtonDelete> */}
@@ -29,7 +28,7 @@ export const ItemContacts = ({ name, phone, deleteContact, id }) => {
 
 ItemContacts.propTypes = {
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string,
+    number: PropTypes.string.isRequired,
     deleteContact: PropTypes.func.isRequired,
-    id: PropTypes.string,
+    id: PropTypes.string
 };

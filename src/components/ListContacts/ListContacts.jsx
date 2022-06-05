@@ -1,20 +1,22 @@
+import { useEffect } from 'react';
 import { ItemContacts } from 'components/ItemContacts/ItemContacts';
 import { ContactsList } from 'components/ListContacts/ListContacts.styled';
-import { useSelector } from 'react-redux';
-import { getFilter } from '../../redux/contactsSliceFilter';
-import { useFetchContactsQuery, useRemoveContactMutation } from 'redux/contactsApi';
-// import { Loader } from 'components/Loader/Loader';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContactThunk } from 'redux/contacts/contactsOperations';
+import { fetchContactsThunk } from 'redux/contacts/contactsOperations';
+import contactsSelectors from 'redux/contacts/contactsSelectors';
 
 export function ListContacts() {
-  const { data: contacts, isFetching } = useFetchContactsQuery();
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(contactsSelectors.getContacts);
+  const filter = useSelector(contactsSelectors.getFilter);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
+
+  const onDeleteContact = (id) => dispatch(deleteContactThunk(id));
   
-  // const dispatch = useDispatch();
-
-  const [deleteContact] = useRemoveContactMutation();
-  const onDeleteContact = (id) => deleteContact(id);
-
-
   const onSearchByName = () => {
     const normalizedFilter = filter.toLowerCase().trim();
 
@@ -28,15 +30,14 @@ export function ListContacts() {
   return (
     <>
       <ContactsList>
-        {/* {isFetching && <Loader/>} */}
-        {contacts && !isFetching && arrayContacts.map(({ id, name, phone }) => {
+        {arrayContacts.map(({ id, name, number }) => {
           return (
           
             <ItemContacts
               key={id}
               id={id}
               name={name}
-              phone={phone}
+              number={number}
               deleteContact={onDeleteContact}
             />
           );
