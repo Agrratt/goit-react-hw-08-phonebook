@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from 'components/Layout/Layout';
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import AuthOperations from 'redux/auth/authOperations';
 import { Container } from 'components/App.styled';
 import PrivateRoute from 'components/PrivateRoute';
