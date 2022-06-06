@@ -25,8 +25,9 @@ export function App() {
   })
 
   return (
-      <Container>
-      <Suspense>
+    <Container>
+      {/* {isRefreshingUser ? (<Loader />) : ( */}
+        <Suspense>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
@@ -50,6 +51,8 @@ export function App() {
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      {/* )} */}
+      
     </Container>
     )
 };
