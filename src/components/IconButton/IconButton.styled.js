@@ -8,7 +8,7 @@ export const DeleteButton = styled.button`
   border-radius: 50%;
   color: white;
   font: inherit;
-  background-color: #f2fa9b;
+  background-color: #b1d8be;
   cursor: pointer;
 
   display: inline-flex;

@@ -4,6 +4,7 @@ import { ReactComponent as Email } from 'components/icons/email.svg';
 import { ReactComponent as Password } from 'components/icons/password.svg';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/authOperations';
+import { Title, Form, Label, Input, Button } from 'pages/RegisterPage.styled';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -35,13 +36,13 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h2>Please register</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <Title>Please register</Title>
+      <Form onSubmit={handleSubmit}>
+        <Label>
           <div>
             <User />
           </div>
-          <input
+          <Input
             type="text"
             placeholder="name"
             name="name"
@@ -49,13 +50,13 @@ export default function RegisterPage() {
             onChange={onHandleChange}
             required
           />
-        </label>
+        </Label>
 
-        <label>
+        <Label>
           <div>
             <Email />
           </div>
-          <input
+          <Input
             type="email"
             placeholder="email"
             name="email"
@@ -63,13 +64,13 @@ export default function RegisterPage() {
             onChange={onHandleChange}
             required
           />
-        </label>
+        </Label>
 
-        <label>
+        <Label>
           <div>
             <Password />
           </div>
-          <input
+          <Input
             type="password"
             placeholder="password"
             name="password"
@@ -77,10 +78,10 @@ export default function RegisterPage() {
             onChange={onHandleChange}
             required
           />
-        </label>
+        </Label>
 
-        <button type="submit">Register</button>
-      </form>
+        <Button type="submit">Register</Button>
+      </Form>
     </div>
   );
 }

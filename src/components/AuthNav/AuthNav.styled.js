@@ -2,18 +2,14 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.nav`
-  /* width: 100%; */
   display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 50%;
-  text-align: center;
 `;
+
 export const NavLinkStyled = styled(NavLink)`
   display: inline-block;
-
   text-decoration: none;
-  padding: 0 12px;
+  width: 70px;
+  padding: 0 15px;
   font-weight: 500;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.537);

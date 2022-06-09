@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {authSelectors} from 'redux/auth/authSelectors';
 import authOperations from 'redux/auth/authOperations';
 import { useNavigate } from "react-router-dom";
+import { Wrapper, Text, Button } from "./UserMenu.styled";
 
 export function UserMenu() {
     const name = useSelector(authSelectors.getUserName);
@@ -10,14 +11,14 @@ export function UserMenu() {
     const dispatch = useDispatch();
 
     return (
-        <div>
-            <h3>Welcome, { name}</h3>
-            <button type="button"
+        <Wrapper>
+            <Text>Welcome, { name}</Text>
+            <Button type="button"
                 onClick={() => {
                     dispatch(authOperations.logOut());
                     navigate('/')
                 }}>
-                Log out</button>
-        </div>
+                Log out</Button>
+        </Wrapper>
     )
 }

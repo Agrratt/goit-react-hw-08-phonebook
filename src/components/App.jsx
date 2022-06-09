@@ -4,7 +4,6 @@ import Layout from 'components/Layout/Layout';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import AuthOperations from 'redux/auth/authOperations';
-import { Container } from 'components/App.styled';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 // import { authSelectors } from 'redux/auth/authSelectors';
@@ -25,7 +24,7 @@ export function App() {
   })
 
   return (
-    <Container>
+    <div>
       {/* {isRefreshingUser ? (<Loader />) : ( */}
         <Suspense>
         <Routes>
@@ -53,6 +52,6 @@ export function App() {
       </Suspense>
       {/* )} */}
       
-    </Container>
+    </div>
     )
 };

@@ -4,22 +4,23 @@ import { ListContacts } from 'components/ListContacts/ListContacts';
 import { Filter } from 'components/Filter/Filter';
 import { Message } from 'components/Message/Message';
 import { fetchContactsThunk } from 'redux/contacts/contactsOperations';
+import { MainTitle, Title } from 'components/Form/Form.styled';
 
 export default function ContactPage() {
   const contacts = useSelector(fetchContactsThunk);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <>
+      <MainTitle>Phonebook</MainTitle>
       <Form />
 
-      <h2>Contacts</h2>
+      <Title>Contacts</Title>
       <Filter />
       {contacts.length > 0 ? (
         <ListContacts />
       ) : (
         <Message message="Сontact list is empty" />
       )}
-    </div>
+    </>
   );
 }

@@ -1,16 +1,16 @@
 import {
-  LinkStyled,
-  HeaderStyled,
-} from 'components/Navigation/Navigation.styled';
+  NavLinkStyled,
+  Wrapper,
+} from 'components/AuthNav/AuthNav.styled';
 
 export function AuthNav() {
     return (
-        <HeaderStyled>
-            <LinkStyled to="register">Register</LinkStyled>
-            <LinkStyled to="login">Login</LinkStyled>
+        <Wrapper>
+            <NavLinkStyled to="register">Register</NavLinkStyled>
+            <NavLinkStyled to="login">Login</NavLinkStyled>
             
 
-        </HeaderStyled>
+        </Wrapper>
         
     )
 }

@@ -3,6 +3,7 @@ import { ReactComponent as Password } from 'components/icons/password.svg';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import authOperations from 'redux/auth/authOperations';
+import { Title, Form, Label, Input, Button } from 'pages/RegisterPage.styled';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -30,13 +31,13 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h2>Please log in</h2>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
+      <Title>Please log in</Title>
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Label>
           <div>
             <Email />
           </div>
-          <input
+          <Input
             type="email"
             placeholder="email"
             name="email"
@@ -44,13 +45,13 @@ export default function LoginPage() {
             onChange={onHandleChange}
             required
           />
-        </label>
+        </Label>
 
-        <label>
+        <Label>
           <div>
             <Password />
           </div>
-          <input
+          <Input
             type="password"
             placeholder="password"
             name="password"
@@ -58,10 +59,10 @@ export default function LoginPage() {
             onChange={onHandleChange}
             required
           />
-        </label>
+        </Label>
 
-        <button type="submit">Login</button>
-      </form>
+        <Button type="submit">Login</Button>
+      </Form>
     </div>
   );
 }

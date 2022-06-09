@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { AppBar } from 'components/AppBar/AppBar';
-import { Container } from 'components/Layout/Layout.styled';
+import { Container, Header, Main } from 'components/Layout/Layout.styled';
 
 export default function Layout() {
     return (
         <Container>
-            <AppBar />
-            <Outlet/>
+            <Header>
+                <AppBar />
+            </Header>
+            <Main>
+                <Outlet/>
+            </Main>
         </Container>
     );
 }

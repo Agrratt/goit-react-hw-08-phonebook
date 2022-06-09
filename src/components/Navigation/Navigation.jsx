@@ -1,22 +1,22 @@
 import { useSelector } from 'react-redux';
 import {
-  LinkStyled,
-  HeaderStyled,
+  NavLinkStyled,
+  Wrapper,
 } from 'components/Navigation/Navigation.styled';
 import {authSelectors} from 'redux/auth/authSelectors';
 
 export const Navigation = () => {
   const isLogged = useSelector(authSelectors.getIsLogged);
   return (
-    <HeaderStyled>
-      <nav>
-        <LinkStyled to="/">Home</LinkStyled>
+    
+      <Wrapper>
+        <NavLinkStyled to="/">Home</NavLinkStyled>
         {isLogged &&
-          <LinkStyled to="contacts">Contacts</LinkStyled>}  
+          <NavLinkStyled to="contacts">Contacts</NavLinkStyled>}  
         
         
               
-      </nav>
-    </HeaderStyled>
+      </Wrapper>
+    
   );
 };
