@@ -28,8 +28,9 @@ const authSlice = createSlice({
       state.isLogged = false;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
-      state.user = { ...action.payload };
+      state.user = action.payload;
       state.isLogged = true;
+      state.isRefreshing = false;
     },
     [authOperations.fetchCurrentUser.pending](state, _) {
       state.isRefreshing = true;
@@ -40,5 +41,4 @@ const authSlice = createSlice({
   },
 });
 
-// const authReducer = authSlice.reducer;
 export default authSlice.reducer;
